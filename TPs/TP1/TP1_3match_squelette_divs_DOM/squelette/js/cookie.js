@@ -50,7 +50,7 @@ export default class Cookie {
   isSelectionnee() {
     // on regarde si l'image a la classe CSS "cookies-selected"
     // A FAIRE
-    //return this.htmlImage.classList.contains("cookies-selected");
+    return this.htmlImage.classList.contains("cookies-selected");
   }
 
   selectionnee() {
@@ -59,28 +59,32 @@ export default class Cookie {
     // surlignée correspondant au type de cookie. Voir la propriété
     // statique de la classe Cookie, urlsImagesSurlignees
     // A FAIRE
-   
+    this.htmlImage.src = Cookie.urlsImagesSurlignees[this.type];
     // A FAIRE On va ajouter la classe CSS "cookies-selected" à
     // l'image du cookie
-    
+    this.htmlImage.classList.add("cookies-selected");
   }
 
   deselectionnee() {
     // on change l'image et la classe CSS
     // A FAIRE
-  
+    this.htmlImage.src = Cookie.urlsImagesNormales[this.type];
     // A FAIREOn va ajouter la classe CSS "cookies-selected" à
     // l'image du cookie
-    
+    this.htmlImage.classList.remove("cookies-selected");
   }
 
   static swapCookies(c1, c2) {
     // A FAIRE
-    console.log("On essaie SWAP C1 C2");
+    console.log("SWAP C1 C2");
+    // On échange leurs images et types
+    let typeTmp = c1.type;
+    c1.type = c2.type;
+    c2.type = typeTmp;
 
-    // On regarde la distance entre les deux cookies
-    // si elle est de 1, on peut les swapper
-   
+    // et on remet les images normales
+    c1.deselectionnee();
+    c2.deselectionnee();
   }
 
   /** renvoie la distance au sens "nombre de cases" 

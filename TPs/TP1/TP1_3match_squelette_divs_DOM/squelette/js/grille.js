@@ -36,8 +36,9 @@ export default class Grille {
       // est à l'index 4
       // on est sur la ligne 0 (car 4/9 = 0) et 
       // la colonne 4 (car 4%9 = 4)
-      let ligne = Math.floor(index / this.l);
+      let ligne = Math.floor(index / this.c);
       let colonne = index % this.c;
+
 
       console.log("On remplit le div index=" + index + " l=" + ligne + " col=" + colonne);
 
@@ -48,7 +49,7 @@ export default class Grille {
 
       img.onclick = (event) => {
         console.log("On a cliqué sur la ligne " + ligne + " et la colonne " + colonne);
-        //let cookieCliquee = this.getCookieFromLC(ligne, colonne);
+        let cookieCliquee = this.getCookieFromLC(ligne, colonne);
         console.log("Le cookie cliqué est de type " + cookie.type);
 
         // test : si on a cliqué sur un cookie déjà sélectionné
@@ -66,14 +67,36 @@ export default class Grille {
         // A FAIRE : tester combien de cookies sont sélectionnées
         // si 0 on ajoute le cookie cliqué au tableau
         // si 1 on ajoute le cookie cliqué au tableau
-        // et on essaie de swapper
+        if (this.cookieSelectionnes.length === 0) {
+          this.cookieSelectionnes.push(cookie);
+        } else if (this.cookieSelectionnes.length === 1) {
+          this.cookieSelectionnes.push(cookie);
       }
+      // et on essaie de swappe
 
+      if (this.cookieSelectionnes.length == 2) {
+          let cookie1 = this.cookieSelectionnes[0];
+          let cookie2 = this.cookieSelectionnes[1];
+        if(Cookie.distance(this.cookieSelectionnes[0], this.cookieSelectionnes[1])>1){
+          console.log("Trop loin pour swap");
+          // on désélectionne les deux cookies
+          this.cookieSelectionnes[0].deselectionnee();
+          this.cookieSelectionnes[1].deselectionnee();
+          this.cookieSelectionnes = [];
+          return;
+        }
+        else{
+            Cookie.swapCookies(cookie1, cookie2);
+          }
+      }
       // A FAIRE : ecouteur de drag'n'drop
       
       // on affiche l'image dans le div pour la faire apparaitre à l'écran.
-      div.appendChild(img);
-    });
+    }
+    div.appendChild(img);
+  }
+);
+
   }
 
   // inutile ?
@@ -101,7 +124,7 @@ export default class Grille {
     // chaque case avec un autre tableau vide
     // Faites ctrl-click sur la fonction create2DArray
     // pour voir comment elle fonctionne
-    let tab = create2DArray(9);
+    let tab = create2DArray(this.l);
 
     // remplir
     for (let l = 0; l < this.l; l++) {

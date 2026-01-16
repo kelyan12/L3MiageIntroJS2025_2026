@@ -1,0 +1,72 @@
+.divcontainer {
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    padding: 20px;
+
+}
+
+.div1 {
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.div2 {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.navbar1 {
+    display: flex;
+    justify-content: space-around;
+    background-color: grey;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+ul{
+    padding: 0%;
+    margin: 0%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+}
+
+button {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover{
+    scale: 1.1;
+}
+
+body {
+    background: linear-gradient(to bottom, #ffffff, #000000);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
